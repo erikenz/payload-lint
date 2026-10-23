@@ -1,58 +1,23 @@
 {
-  "name": "biome-plugin-payload",
-  "version": "0.1.4",
-  "description": "Biome lint plugin (GritQL) that enforces Payload CMS best practices on Local API calls",
-  "keywords": [
-    "biome",
-    "biome-plugin",
-    "gritql",
-    "lint",
-    "payload",
-    "payloadcms",
-    "local-api"
-  ],
-  "homepage": "https://github.com/erikenz/biome-plugin-payload#readme",
-  "bugs": {
-    "url": "https://github.com/erikenz/biome-plugin-payload/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/erikenz/biome-plugin-payload.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Erik Enz",
-    "url": "https://github.com/erikenz"
-  },
-  "type": "module",
-  "files": [
-    "rules/*.grit",
-    "README.md",
-    "LICENSE"
-  ],
-  "scripts": {
-    "check": "biome check .",
-    "fix": "biome check --write . && bunx sort-package-json",
-    "format": "biome format --write .",
-    "lint": "biome lint .",
-    "prepublishOnly": "bun test",
-    "test": "vitest run"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.5.7",
-    "payload": "3.87.0",
-    "vitest": "4.1.10"
-  },
-  "peerDependencies": {
-    "@biomejs/biome": ">=2.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@biomejs/biome": {
-      "optional": true
-    }
-  },
-  "packageManager": "bun@1.3.14",
-  "engines": {
-    "node": ">=20.11"
-  }
+	"name": "payload-lint",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"check": "biome check .",
+		"fix": "bunx sort-package-json package.json packages/*/package.json && biome check --write .",
+		"format": "biome format --write .",
+		"lint": "biome lint .",
+		"publish:biome": "bun publish --cwd packages/biome-plugin-payload",
+		"publish:oxlint": "bun publish --cwd packages/oxlint-plugin-payload",
+		"test": "bun run --workspaces test"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.6.2",
+		"oxlint": "1.89.0",
+		"payload": "3.92.0",
+		"vitest": "5.0.5"
+	},
+	"packageManager": "bun@1.3.14"
 }

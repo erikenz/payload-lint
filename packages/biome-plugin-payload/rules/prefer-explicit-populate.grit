@@ -5,7 +5,7 @@ language js
 // greater than 0 to pass an explicit `populate` object, so the fields of
 // populated related documents are intentional instead of returning the full
 // document or whatever `defaultPopulate` is configured to on each collection.
-// See docs/guides/payloadcms/queries/select.mdx (populate section)
+// See https://payloadcms.com/docs/queries/select#populate
 //
 // Heuristic: only fires when `depth` is a positive numeric literal (a
 // variable or computed depth cannot be verified). Calls with `select` that
@@ -13,9 +13,9 @@ language js
 // be populated — the correct fix there is `depth: 0`.
 //
 // Note: if the target collection defines `defaultPopulate` in its config,
-// Payload already limits which fields are returned during population. You can
-// suppress this diagnostic with:
-//   // biome-ignore lint/plugin/prefer-explicit-populate: defaultPopulate handles this
+// Payload already limits which fields are returned during population. Suppress
+// this diagnostic with the linter-specific ignore comment documented in the
+// package README.
 //
 // Skipped (cannot be verified statically, avoids false positives):
 // - calls where the arguments are not an object literal (`payload.find(args)`)
@@ -43,5 +43,5 @@ language js
 		`populate`
 	},
 	! $args <: contains JsSpread(),
-	register_diagnostic(span=$call, message="Payload queries with `depth` greater than 0 should specify `populate` to control which fields of populated related documents are returned. If the collection defines `defaultPopulate`, suppress with a biome-ignore comment. See docs/guides/payloadcms/queries/select.mdx", severity="error")
+	register_diagnostic(span=$call, message="Payload queries with `depth` greater than 0 should specify `populate` to control which fields of populated related documents are returned. See https://payloadcms.com/docs/queries/select#populate", severity="error")
 }
