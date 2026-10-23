@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.5] — 2026-10-23
+
+### Changed
+
+- Move the package into the `payload-lint` monorepo. The package name and the installed `rules/*.grit` layout are unchanged.
+- Point diagnostic messages at public Payload documentation instead of repository-local docs paths.
+- Require Biome 2.5.0 or later. The rules use GritQL node patterns that are not available in older releases.
+
 ## [0.1.0] — 2026-08-11
 
 ### Added

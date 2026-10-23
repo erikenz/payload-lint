@@ -28,5 +28,5 @@ language js
 		`select`
 	},
 	! $args <: contains JsSpread(),
-	register_diagnostic(span=$call, message="Payload queries should specify `select` to only fetch the fields that are needed. See docs/guides/payloadcms/queries/select.mdx", severity="error")
+	register_diagnostic(span=$call, message="Payload queries should specify `select` to only fetch the fields that are needed. See https://payloadcms.com/docs/queries/select", severity="error")
 }

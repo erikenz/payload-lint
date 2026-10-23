@@ -1,0 +1,287 @@
+{
+	"no-find-without-select": {
+		"message": "Payload queries should specify `select` to only fetch the fields that are needed. See https://payloadcms.com/docs/queries/select",
+		"cases": [
+			{
+				"name": "flags payload.find without select",
+				"fixture": "select/01-missing-select.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "accepts find/findByID with select",
+				"fixture": "select/02-with-select.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "accepts an empty select object",
+				"fixture": "select/03-empty-select.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "flags this.payload.find without select",
+				"fixture": "select/04-this-payload.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "skips calls with spread arguments",
+				"fixture": "select/05-spread-args.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "skips calls with non-object arguments",
+				"fixture": "select/06-non-object-args.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "does not flag array .find calls on a variable named payload",
+				"fixture": "select/07-array-find.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "does not flag payload.db direct database calls",
+				"fixture": "select/08-payload-db.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "does not flag count, and accepts findGlobal when select is provided",
+				"fixture": "select/09-other-ops.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "accepts select passed as a shorthand property",
+				"fixture": "select/10-shorthand-select.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "flags payload.findGlobal without select",
+				"fixture": "select/11-find-global-without-select.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "flags payload.findVersions and findVersionByID without select",
+				"fixture": "select/12-find-versions-without-select.ts",
+				"diagnostics": 2
+			},
+			{
+				"name": "accepts findVersions and findVersionByID with select",
+				"fixture": "select/13-find-versions-with-select.ts",
+				"diagnostics": 0
+			}
+		]
+	},
+	"no-find-without-depth": {
+		"message": "Payload queries should set `depth` explicitly. Omitting it uses the application default (1), which populates one level of relationships. Use `depth: 0` to disable population. See https://payloadcms.com/docs/queries/depth",
+		"cases": [
+			{
+				"name": "flags payload.find without depth",
+				"fixture": "depth/01-missing-depth.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "accepts find/findByID with depth",
+				"fixture": "depth/02-with-depth.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "flags req.payload.findByID without depth",
+				"fixture": "depth/03-req-find-by-id-no-depth.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "skips calls with spread arguments",
+				"fixture": "depth/04-spread-args.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "skips calls with non-object arguments",
+				"fixture": "depth/05-non-object-args.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "accepts depth passed as a shorthand property",
+				"fixture": "depth/06-shorthand-depth.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "flags payload.findGlobal without depth",
+				"fixture": "depth/07-find-global-without-depth.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "flags payload.findVersions and findVersionByID without depth",
+				"fixture": "depth/08-find-versions-without-depth.ts",
+				"diagnostics": 2
+			}
+		]
+	},
+	"prefer-explicit-populate": {
+		"message": "Payload queries with `depth` greater than 0 should specify `populate` to control which fields of populated related documents are returned. See https://payloadcms.com/docs/queries/select#populate",
+		"cases": [
+			{
+				"name": "flags depth greater than 0 without populate",
+				"fixture": "populate/01-depth-without-populate.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "accepts depth with populate",
+				"fixture": "populate/02-with-populate.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "accepts depth 0 without populate",
+				"fixture": "populate/03-depth-zero.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "skips computed depth values",
+				"fixture": "populate/04-computed-depth.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "flags findGlobal with depth greater than 0 without populate",
+				"fixture": "populate/05-find-global-without-populate.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "skips calls with spread arguments",
+				"fixture": "populate/06-spread-args.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "flags payload.findVersions with depth greater than 0 without populate",
+				"fixture": "populate/07-find-versions-without-populate.ts",
+				"diagnostics": 1
+			}
+		]
+	},
+	"no-missing-override-access": {
+		"message": "Always declare `overrideAccess` explicitly on Payload Local API calls. The Local API bypasses access control by default (`overrideAccess: true`).",
+		"cases": [
+			{
+				"name": "flags payload.find without overrideAccess",
+				"fixture": "override-access/01-missing-override.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "accepts explicit overrideAccess (true or false)",
+				"fixture": "override-access/02-with-override.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "flags payload.count without overrideAccess",
+				"fixture": "override-access/03-count-no-override.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "flags payload.login without overrideAccess",
+				"fixture": "override-access/04-login-no-override.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "flags payload.findGlobal without overrideAccess",
+				"fixture": "override-access/05-find-global-no-override.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "flags payload.updateGlobal without overrideAccess",
+				"fixture": "override-access/06-update-global-no-override.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "flags payload.updateByID without overrideAccess",
+				"fixture": "override-access/07-update-by-id-no-override.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "flags req.payload.deleteByID without overrideAccess",
+				"fixture": "override-access/08-delete-by-id-no-override.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "skips calls with spread arguments",
+				"fixture": "override-access/09-spread-args.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "skips calls with non-object arguments",
+				"fixture": "override-access/10-non-object-args.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "does not flag array .find calls on a variable named payload",
+				"fixture": "override-access/11-array-find.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "does not flag payload.db direct database calls",
+				"fixture": "override-access/12-payload-db.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "accepts overrideAccess passed as a shorthand property",
+				"fixture": "override-access/13-shorthand-override.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "flags payload.unlock without overrideAccess",
+				"fixture": "override-access/14-unlock-no-override.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "flags payload.findVersions and findVersionByID without overrideAccess",
+				"fixture": "override-access/15-find-versions-no-override.ts",
+				"diagnostics": 2
+			}
+		]
+	},
+	"require-user-with-override-false": {
+		"message": "When `overrideAccess: false` is set, pass `user`, `req`, or `user: null` so Payload knows whose permissions to check. Without them, access control functions receive `undefined` as the user. For explicit unauthenticated access, pass `user: null`.",
+		"cases": [
+			{
+				"name": "flags overrideAccess: false without user",
+				"fixture": "user/01-override-false-no-user.ts",
+				"diagnostics": 1
+			},
+			{
+				"name": "accepts overrideAccess: false with user",
+				"fixture": "user/02-override-false-with-user.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "does not flag overrideAccess: true without user",
+				"fixture": "user/03-override-true-no-user.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "flags multiple ops with overrideAccess: false and no user",
+				"fixture": "user/04-multiple-ops-no-user.ts",
+				"diagnostics": 2
+			},
+			{
+				"name": "accepts user passed as a shorthand property",
+				"fixture": "user/05-shorthand-user.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "skips calls with spread arguments",
+				"fixture": "user/06-spread-args.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "accepts req as equivalent to user",
+				"fixture": "user/07-req-as-user.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "accepts req passed as a shorthand property",
+				"fixture": "user/08-shorthand-req.ts",
+				"diagnostics": 0
+			},
+			{
+				"name": "accepts explicit user: null for intentional unauthenticated queries",
+				"fixture": "user/09-user-null.ts",
+				"diagnostics": 0
+			}
+		]
+	}
+}

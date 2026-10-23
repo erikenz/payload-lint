@@ -6,7 +6,7 @@ language js
 // configurable via `defaultDepth` in payload.config.ts), which silently
 // populates one level of relationships — almost always not what you want
 // inside server code that should be predictable and fast.
-// See docs/guides/payloadcms/queries/depth.mdx
+// See https://payloadcms.com/docs/queries/depth
 //
 // Skipped (cannot be verified statically, avoids false positives):
 // - calls where the arguments are not an object literal (`payload.find(args)`)
@@ -30,5 +30,5 @@ language js
 		`depth`
 	},
 	! $args <: contains JsSpread(),
-	register_diagnostic(span=$call, message="Payload queries should set `depth` explicitly. Omitting it uses the application default (1), which populates one level of relationships. Use `depth: 0` to disable population. See docs/guides/payloadcms/queries/depth.mdx", severity="error")
+	register_diagnostic(span=$call, message="Payload queries should set `depth` explicitly. Omitting it uses the application default (1), which populates one level of relationships. Use `depth: 0` to disable population. See https://payloadcms.com/docs/queries/depth", severity="error")
 }

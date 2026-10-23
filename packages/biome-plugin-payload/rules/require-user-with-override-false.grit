@@ -10,10 +10,10 @@
 //   await payload.find({ ..., overrideAccess: false, user: null })   // explicit anonymous access
 //
 // For public-facing Server Components where no req/user exists, pass user: null explicitly
-// or suppress with a biome-ignore comment:
-//   // biome-ignore lint/plugin/require-user-with-override-false: public anonymous access
+// or suppress this diagnostic with the linter-specific ignore comment documented
+// in the package README.
 //
-// See docs/guides/payloadcms/local-api/access-control.mdx
+// See https://payloadcms.com/docs/local-api/access-control
 //
 // Skipped (cannot be verified statically, avoids false positives):
 // - calls where the arguments are not an object literal

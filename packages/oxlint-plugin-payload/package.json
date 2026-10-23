@@ -1,0 +1,43 @@
+{
+	"name": "oxlint-plugin-payload",
+	"version": "0.1.0",
+	"description": "Oxlint plugin that enforces Payload CMS best practices on Local API calls",
+	"keywords": [
+		"lint",
+		"local-api",
+		"oxlint",
+		"oxlint-plugin",
+		"payload",
+		"payloadcms"
+	],
+	"homepage": "https://github.com/erikenz/payload-lint/tree/main/packages/oxlint-plugin-payload#readme",
+	"bugs": {
+		"url": "https://github.com/erikenz/payload-lint/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/erikenz/payload-lint.git",
+		"directory": "packages/oxlint-plugin-payload"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Erik Enz",
+		"url": "https://github.com/erikenz"
+	},
+	"type": "module",
+	"exports": {
+		".": "./src/index.mjs"
+	},
+	"files": [
+		"src",
+		"README.md",
+		"LICENSE"
+	],
+	"scripts": {
+		"prepublishOnly": "bun run test",
+		"test": "vitest run"
+	},
+	"engines": {
+		"node": "^20.19.0 || >=22.12.0"
+	}
+}

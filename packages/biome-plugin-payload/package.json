@@ -1,0 +1,49 @@
+{
+	"name": "biome-plugin-payload",
+	"version": "0.1.5",
+	"description": "Biome lint plugin (GritQL) that enforces Payload CMS best practices on Local API calls",
+	"keywords": [
+		"biome",
+		"biome-plugin",
+		"gritql",
+		"lint",
+		"payload",
+		"payloadcms",
+		"local-api"
+	],
+	"homepage": "https://github.com/erikenz/payload-lint/tree/main/packages/biome-plugin-payload#readme",
+	"bugs": {
+		"url": "https://github.com/erikenz/payload-lint/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/erikenz/payload-lint.git",
+		"directory": "packages/biome-plugin-payload"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Erik Enz",
+		"url": "https://github.com/erikenz"
+	},
+	"type": "module",
+	"files": [
+		"rules/*.grit",
+		"README.md",
+		"LICENSE"
+	],
+	"scripts": {
+		"prepublishOnly": "bun run test",
+		"test": "vitest run"
+	},
+	"peerDependencies": {
+		"@biomejs/biome": ">=2.5.0"
+	},
+	"peerDependenciesMeta": {
+		"@biomejs/biome": {
+			"optional": true
+		}
+	},
+	"engines": {
+		"node": ">=20.11"
+	}
+}
